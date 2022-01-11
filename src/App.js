@@ -34,8 +34,8 @@ class App extends React.Component {
   handleClearFinished = () => {
     this.setState({
       ...this.state,
-      list: this.state.toDoList.filter(item => {
-        return !item.purchased;
+      toDoList: this.state.toDoList.filter(item => {
+        return !item.completed;
       })
     });
   }
