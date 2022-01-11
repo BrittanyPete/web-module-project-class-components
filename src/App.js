@@ -19,7 +19,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      toDo: toDoList
+      toDoList: toDoList
     };
   }
 
@@ -40,17 +40,45 @@ class App extends React.Component {
   }
 
   //Add to do item
+  handleAddTodo = (todoItem) => {
+    const newTodoItem = {
+      item:todoItem,
+      id: Date.now(),
+      completed: false
+    };
+    
+    this.setState({
+      ...this.state,
+      toDoList: [...this.state.toDoList, newTodoItem]
+    });
+  }
 
   //Toggle finished items
+  handleToggleTodo = (selectedTodo) => {
+    this.setState({
+      ...this.state,
+      toDoList: this.state.toDoList.map(item => {
+        if(item.id === selectedItem.id) {
+          return({
+            ...item,
+            completed: !item.completed
+          })
+        } else {
+          return item;
+        }
+      })
+    })
+  }
 
   render() {
+    // console.log(this.state);
     return (
       <div>
         <div>
           <h1>To Do List:</h1>
-          <TodoForm />
+          <TodoForm handleAddTodo={this.handleAddTodo}/>
         </div>
-        <TodoList />
+        <TodoList handleToggleTodo={this.handleToggleTodo} toDoList={this.state.toDoList}/>
         <button onClick={this.handleClearFinished} className='clear-btn'>Clear Finished</button>
       </div>
     );
