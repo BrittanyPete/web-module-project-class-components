@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoList.js';
 import TodoForm from './components/TodoForm.js';
+import './style.css';
 
 const toDoList = [
   {
@@ -58,7 +59,7 @@ class App extends React.Component {
     this.setState({
       ...this.state,
       toDoList: this.state.toDoList.map(item => {
-        if(item.id === selectedItem.id) {
+        if(item.id === selectedTodo.id) {
           return({
             ...item,
             completed: !item.completed

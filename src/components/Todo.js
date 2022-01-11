@@ -1,22 +1,15 @@
 import React from 'react';
 
 class Todo extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            input: ''
-        }
-    }
-    
-    handleClick = () => {
-        // console.log('handleClick:')
-        // this.props.handleToggleTodo(props.item);
-    }
-
     render() {
+        const handleClick = () => {
+            // console.log('handleClick:', this.props)
+            this.props.handleToggleTodo(this.props.item);
+        }
         // console.log('todo props:', this.props)
+        // console.log('todo props item:', this.props.item)
         return (
-            <div onClick={this.handleClick} className={`item${this.props.item.completed ? ' completed' : ''}`}>
+            <div onClick={handleClick} className={`item${this.props.item.completed ? ' completed' : ''}`}>
                 <p>{this.props.item.item}</p>
             </div>
         )
